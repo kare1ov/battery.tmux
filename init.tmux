@@ -2,19 +2,20 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-battery_placeholders=(
+placeholders=(
     "\#{battery_icon_new}"
     "\#{battery_level}"
 )
-battery_commands=(
+commands=(
     "#($CURRENT_DIR/src/icon.sh)"
     "#($CURRENT_DIR/src/level.sh)"
 )
 
-substitute(){
+apply_placeholder_substitution(){
     local option_value="$1"
-    for ((i=0; i<${#battery_commands[@]}; i++)); do
-        option_value=${option_value//${battery_placeholders[$i]}/${battery_commands[$i]}}
+    for ((i=0; i<${#commands[@]}; i++)); do
+        # replace placeholder value with a command's value
+        option_value=${option_value//${placeholders[$i]}/${commands[$i]}}
     done
     echo "$option_value"
 }
@@ -22,7 +23,7 @@ substitute(){
 set_tmux_option(){
     local option="$1"
     local value="$(tmux show-option -gqv "$option")"
-    local new_value="$(substitute "$value")"
+    local new_value="$(apply_placeholder_substitution "$value")"
     tmux set-option -gq "$option" "$new_value"
 }
 
