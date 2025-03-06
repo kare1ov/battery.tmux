@@ -3,7 +3,7 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 placeholders=(
-    "\#{battery_icon_new}"
+    "\#{battery_icon}"
     "\#{battery_level}"
 )
 commands=(
