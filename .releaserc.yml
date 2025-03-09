@@ -22,6 +22,7 @@ plugins:
     - linkCompare: false
       linkReferences: false
       writerOpts:
+        headerPartial: "## 🎉 New Release"
         commitPartial: "* {{#if scope}}{{scope}}: {{/if}}{{subject}}"
   - "@semantic-release/github"
 
