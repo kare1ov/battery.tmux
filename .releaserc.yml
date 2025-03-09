@@ -1,0 +1,27 @@
+branches:
+  - main
+plugins:
+  - - "@semantic-release/commit-analyzer"
+    - preset: "angular"
+      releaseRules:
+        - type: "feat"
+          scope: "major"
+          release: "major"
+        - type: "feat"
+          release: "minor"
+        - type: "fix"
+          release: "patch"
+        - type: "refactor"
+          release: false
+        - type: "ci"
+          release: false
+        - type: "docs"
+          release: false
+        
+  - - "@semantic-release/release-notes-generator"
+    - linkCompare: false
+      linkReferences: false
+      writerOpts:
+        commitPartial: "* {{#if scope}}{{scope}}: {{/if}}{{subject}}"
+  - "@semantic-release/github"
+
