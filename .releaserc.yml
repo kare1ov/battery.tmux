@@ -1,0 +1,37 @@
+# INFO:
+# configuration options https://semantic-release.gitbook.io/semantic-release/usage/configuration
+# plugins https://semantic-release.gitbook.io/semantic-release/extending/plugins-list
+# yaml syntax https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+# commit convention https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
+# read this article https://medium.com/@viniciusteixeiradias/semantic-release-github-actions-61762c6a86c4
+# TODO: - configure commit analyzer
+#       - configure changelog
+#       - version in tags github
+
+#TODO: plan:
+#       - firstly push semantic release change and run it localy to apply new version
+#       - second push github action changes to automate release
+branches:
+  - main
+repositoryUrl: "git@github.com:kare1ov/battery.tmux.git"
+plugins:
+  - - "@semantic-release/commit-analyzer"
+    - preset: "angular"
+      releaseRules:
+        - type: "feat"
+          scope: "major"
+          release: "major"
+        - type: "feat"
+          release: "minor"
+        - type: "fix"
+          release: "patch"
+        - type: "refactor"
+          release: false
+        - type: "ci"
+          release: false
+        - type: "docs"
+          release: false
+        
+  # - "@semantic-release/release-notes-generator"
+  # - "@semantic-release/github"
+
