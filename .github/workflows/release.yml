@@ -20,5 +20,5 @@ jobs:
           node-version: latest
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_NAME }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release@24
