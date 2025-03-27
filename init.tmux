@@ -7,11 +7,11 @@ placeholders=(
     "\#{battery_level}"
 )
 commands=(
-    "#($CURRENT_DIR/src/icon.sh)"
-    "#($CURRENT_DIR/src/level.sh)"
+    "#($CURRENT_DIR/src/battery_icon.sh)"
+    "#($CURRENT_DIR/src/battery_level.sh)"
 )
 
-apply_placeholder_substitution(){
+__apply_placeholder_substitution(){
     local option_value="$1"
     for ((i=0; i<${#commands[@]}; i++)); do
         # replace placeholder value with a command's value
@@ -20,16 +20,16 @@ apply_placeholder_substitution(){
     echo "$option_value"
 }
 
-set_tmux_option(){
+__set_tmux_option(){
     local option="$1"
     local value="$(tmux show-option -gqv "$option")"
-    local new_value="$(apply_placeholder_substitution "$value")"
+    local new_value="$(__apply_placeholder_substitution "$value")"
     tmux set-option -gq "$option" "$new_value"
 }
 
-main(){
-    set_tmux_option "status-left"
-    set_tmux_option "status-right"
+__main(){
+    __set_tmux_option "status-left"
+    __set_tmux_option "status-right"
 }
 
-main
+__main
