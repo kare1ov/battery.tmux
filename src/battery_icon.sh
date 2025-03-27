@@ -10,13 +10,11 @@ __load_icons() {
         source "$CURRENT_DIR/config/icons.conf"
     else
         source "$CURRENT_DIR/config/charging_icons.conf"
-
     fi
 }
 
 __set_icon(){
     __load_icons
-
     local battery_level="$($CURRENT_DIR/battery_level.sh)"
     if [[ "$battery_level" -gt 90 ]]; then
         printf "$icon_level_100"
