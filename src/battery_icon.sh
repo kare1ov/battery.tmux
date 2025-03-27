@@ -9,7 +9,7 @@ __load_icons() {
     if [[ "$battery_status" == "discharging" ]]; then
         source "$CURRENT_DIR/config/icons.conf"
     else
-        source "$CURRENT_DIR/config/charge_icons.conf"
+        source "$CURRENT_DIR/config/charging_icons.conf"
 
     fi
 }
